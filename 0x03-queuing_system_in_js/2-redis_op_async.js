@@ -15,18 +15,16 @@ function setNewSchool(schoolName, value) {
   client.set(schoolName, value, redis.print);
 }
 
+const get = util.promisify(client.get).bind(client);
+
 async function displaySchoolValue(schoolName) {
   try {
-    const value = await client.get(schoolName);
+    const value = get(schoolName);
     console.log(value);
   } catch (err) {
     console.error(err);
   }
-
-
-const displaySchoolValuePromise = util.promisify(displaySchoolValue);
-
-
+}
 
 displaySchoolValue('Holberton');
 setNewSchool('HolbertonSanFranscisco', '100');
