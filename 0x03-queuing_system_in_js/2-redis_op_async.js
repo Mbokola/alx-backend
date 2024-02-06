@@ -19,7 +19,7 @@ const get = util.promisify(client.get).bind(client);
 
 async function displaySchoolValue(schoolName) {
   try {
-    const value = get(schoolName);
+    const value = await get(schoolName);
     console.log(value);
   } catch (err) {
     console.error(err);
